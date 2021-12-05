@@ -3,8 +3,7 @@ use aoc_runner_derive::{aoc, aoc_generator};
 const SIZE: usize = 5;
 type Order = Vec<u32>;
 
-#[derive(Debug)]
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 struct Board {
     board: Vec<Vec<u32>>,
     marked_rows: [usize; SIZE],
