@@ -29,7 +29,7 @@ fn part1(input: &[i32]) -> usize {
 #[cached]
 fn calc_spawn(n: i32, x: i32) -> u64 {
     let initial_spawn = (n + 6 - x) / 7;
-    initial_spawn as u64 + (0..initial_spawn).map(|i| calc_spawn(n - 2 - (i+1) * 7, x)).sum::<u64>()
+    initial_spawn as u64 + (1..=initial_spawn).map(|i| calc_spawn(n - 2 - i * 7, x)).sum::<u64>()
 }
 
 #[aoc(day6, part2)]
