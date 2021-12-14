@@ -3,7 +3,7 @@ use aoc_runner_derive::{aoc, aoc_generator};
 type Move = (i32, i32);
 
 fn parse_line(line: &str) -> Move {
-    let pair: Vec<&str> = line.split(" ").collect();
+    let pair: Vec<&str> = line.split(' ').collect();
     let d = pair[1].parse().unwrap();
     match pair[0] {
         "forward" => (d, 0),
@@ -15,7 +15,7 @@ fn parse_line(line: &str) -> Move {
 
 #[aoc_generator(day2)]
 fn parse_input(input: &str) -> Vec<Move> {
-    input.lines().map(|l| parse_line(l)).collect()
+    input.lines().map(parse_line).collect()
 }
 
 #[aoc(day2, part1)]

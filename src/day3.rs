@@ -6,7 +6,7 @@ fn parse_input(input: &str) -> (usize, Vec<i32>) {
     (len, input.lines().map(|l| isize::from_str_radix(l, 2).unwrap() as i32).collect())
 }
 
-fn calc_set_bits_count(len: usize, input: &Vec<i32>) -> Vec<i32> {
+fn calc_set_bits_count(len: usize, input: &[i32]) -> Vec<i32> {
     let mut set_bits_count = vec![0; len];
     for n in input {
         for i in 0..len {
@@ -22,8 +22,8 @@ fn part1((len, input): &(usize, Vec<i32>)) -> i32 {
     let mut gamma = 0;
     let mut epsilon = 0;
     let threshold = (input.len() as i32) / 2;
-    for i in 0..*len {
-        if set_bits_count[i] >= threshold {
+    for (i, count) in set_bits_count.iter().enumerate().take(*len) {
+        if count >= &threshold {
             gamma |= 1 << (*len-i-1);
         }
         else {
@@ -41,8 +41,8 @@ fn lt(left: i32, right: i32) -> bool {
     left < right
 }
 
-fn calc_rating(len: usize, input: &Vec<i32>, cmp: &dyn Fn(i32, i32) -> bool) -> i32 {
-    let mut ratings = input.clone();
+fn calc_rating(len: usize, input: &[i32], cmp: &dyn Fn(i32, i32) -> bool) -> i32 {
+    let mut ratings = input.to_owned();
     let mut res = 0;
     for i in 0..len {
         let set_bits_count = calc_set_bits_count(len, &ratings);

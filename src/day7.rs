@@ -8,7 +8,7 @@ fn parse_input(input: &str) -> Vec<i32> {
 #[aoc(day7, part1)]
 fn part1(input: &[i32]) -> i32 {
     let mut numbers: Vec<_> = input.to_owned();
-    numbers.sort();
+    numbers.sort_unstable();
     let mid = numbers.len() / 2;
     let pos = numbers[mid];
     numbers.iter().map(|x| (x - pos).abs()).sum()
@@ -17,8 +17,8 @@ fn part1(input: &[i32]) -> i32 {
 #[aoc(day7, part2)]
 fn part2(input: &[i32]) -> i32 {
     let pos = input.iter().sum::<i32>() as f32 / input.len() as f32;
-    let answer1 = input.iter().map(|x| (1..=(x - pos.floor() as i32).abs()).fold(0, |a, b| a + b)).sum();
-    let answer2 = input.iter().map(|x| (1..=(x - pos.ceil() as i32).abs()).fold(0, |a, b| a + b)).sum();
+    let answer1 = input.iter().map(|x| (1..=(x - pos.floor() as i32).abs()).sum::<i32>()).sum();
+    let answer2 = input.iter().map(|x| (1..=(x - pos.ceil() as i32).abs()).sum::<i32>()).sum();
     std::cmp::min(answer1, answer2)
 }
 

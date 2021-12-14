@@ -18,7 +18,7 @@ impl From<&[&str]> for Board {
         for l in lines {
             board.push(l.split_whitespace().map(|n| n.parse::<u32>().unwrap()).collect());
         }
-        Self { board: board, marked_rows: [0; SIZE], marked_cols: [0; SIZE], marked_total: 0, has_won: false }
+        Self { board, marked_rows: [0; SIZE], marked_cols: [0; SIZE], marked_total: 0, has_won: false }
     }
 }
 
